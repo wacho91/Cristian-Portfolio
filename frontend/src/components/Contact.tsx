@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Mail, Phone, Github, Linkedin, Send } from "lucide-react";
+import { Mail, Github, Linkedin, Send } from "lucide-react";
 
 export const Contact = () => {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
@@ -16,7 +16,7 @@ export const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-24 px-6 bg-slate-950 relative z-10">
+    <section id="contact" className="py-24 px-6 bg-transparent relative z-10">
       <div className="max-w-4xl mx-auto">
         <h2 className="text-4xl font-bold text-white mb-4 text-center">
           ¿Tienes un <span className="text-sky-400">problema complejo</span>?
@@ -26,33 +26,33 @@ export const Contact = () => {
         <div className="grid md:grid-cols-2 gap-8">
           {/* Info de contacto */}
           <div className="space-y-6">
-            <a href="mailto:cristian@dev.com" className="flex items-center gap-4 text-slate-300 hover:text-sky-400 transition-colors group">
+            <a href="mailto:criskol.71@gmail.com" className="flex items-center gap-4 text-slate-300 hover:text-sky-400 transition-colors group">
               <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 group-hover:border-sky-500/50 transition-colors">
                 <Mail className="w-6 h-6 text-sky-400" />
               </div>
               <div>
                 <p className="text-xs text-slate-500 uppercase">Email</p>
-                <p className="font-medium">cristian@dev.com</p>
+                <p className="font-medium">criskol.71@gmail.com</p>
               </div>
             </a>
 
-            <a href="#" className="flex items-center gap-4 text-slate-300 hover:text-sky-400 transition-colors group">
+            <a href="https://github.com/wacho91" className="flex items-center gap-4 text-slate-300 hover:text-sky-400 transition-colors group">
               <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 group-hover:border-sky-500/50 transition-colors">
                 <Github className="w-6 h-6 text-sky-400" />
               </div>
               <div>
                 <p className="text-xs text-slate-500 uppercase">GitHub</p>
-                <p className="font-medium">github.com/cristian</p>
+                <p className="font-medium">github.com/wacho91</p>
               </div>
             </a>
 
-            <a href="#" className="flex items-center gap-4 text-slate-300 hover:text-sky-400 transition-colors group">
+            <a href="www.linkedin.com/in/cristian-gonzalez-fuentes-developerfullstack" className="flex items-center gap-4 text-slate-300 hover:text-sky-400 transition-colors group">
               <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 group-hover:border-sky-500/50 transition-colors">
                 <Linkedin className="w-6 h-6 text-sky-400" />
               </div>
               <div>
                 <p className="text-xs text-slate-500 uppercase">LinkedIn</p>
-                <p className="font-medium">linkedin.com/in/cristian</p>
+                <p className="font-medium">www.linkedin.com/in/cristian-gonzalez-fuentes-developerfullstack</p>
               </div>
             </a>
           </div>

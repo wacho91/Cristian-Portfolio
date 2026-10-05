@@ -1,8 +1,20 @@
 export const Hero = () => {
   return (
     <header className="min-h-screen flex flex-col justify-center items-center text-center px-6 relative overflow-hidden">
-      {/* Efecto de fondo neuronal básico */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-slate-900 via-slate-950 to-black z-0"></div>
+      {/* Efecto de fondo neuronal básico translúcido */}
+      <div className="absolute inset-0 bg-gradient-to-b from-slate-950/50 to-slate-950 z-0"></div>
+      
+      {/* Engranajes Gigantes de Fondo */}
+      <div className="absolute top-20 -right-20 opacity-5 text-sky-500 animate-[spin_30s_linear_infinite] hidden md:block">
+        <svg width="400" height="400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M12 2v2m0 16v2M2 12h2m16 0h2m-2.5-7.5l-1.4 1.4M5.9 18.1l-1.4 1.4m0-14.2l1.4 1.4m12.2 12.2l1.4 1.4M12 7a5 5 0 100 10 5 5 0 000-10z"/>
+        </svg>
+      </div>
+      <div className="absolute -bottom-20 -left-20 opacity-5 text-indigo-500 animate-[spin_25s_linear_infinite_reverse] hidden md:block">
+        <svg width="350" height="350" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M12 2v2m0 16v2M2 12h2m16 0h2m-2.5-7.5l-1.4 1.4M5.9 18.1l-1.4 1.4m0-14.2l1.4 1.4m12.2 12.2l1.4 1.4M12 7a5 5 0 100 10 5 5 0 000-10z"/>
+        </svg>
+      </div>
       
       <div className="z-10 flex flex-col items-center">
         <p className="text-sky-400 font-mono mb-4 tracking-widest">$ init_system --user=cristian</p>
