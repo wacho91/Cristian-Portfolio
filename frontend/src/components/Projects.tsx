@@ -19,7 +19,8 @@ const projects: Project[] = [
     tech: "FastAPI, React, PostgreSQL", 
     color: "from-sky-500/20 to-indigo-500/20",
     icon: Cog,
-    img: "/frontend/public/khazad-dum.png", 
+    // Ruta corregida
+    img: "/khazad-dum.png", 
     demo: "https://khazad-dum-two.vercel.app", 
     code: "https://github.com/wacho91" 
   },
@@ -29,7 +30,8 @@ const projects: Project[] = [
     tech: "FastAPI, React, Supabase", 
     color: "from-emerald-500/20 to-teal-500/20",
     icon: Leaf,
-    img: "/frontend/public/agroFlow.png",
+    // Ruta corregida
+    img: "/agroFlow.png",
     demo: "https://agro-flow-one.vercel.app", 
     code: "https://github.com/wacho91" 
   },
@@ -39,9 +41,8 @@ const projects: Project[] = [
     tech: "FastAPI, React, Supabase", 
     color: "from-cyan-500/20 to-blue-500/20",
     icon: Fish,
-    // Imagen cambiada a una que sí funciona
-    img: "/frontend/public/fishsinu.png",
-    // Si no hay demo, lo mandamos a tu GitHub para que no esté muerto
+    // Ruta corregida
+    img: "/fishsinu.png",
     demo: "https://fish-sinu-mzn7.vercel.app", 
     code: "https://github.com/wacho91"  
   },
@@ -51,7 +52,8 @@ const projects: Project[] = [
     tech: "FastAPI, React, Supabase", 
     color: "from-amber-500/20 to-orange-500/20",
     icon: ShoppingCart,
-    img: "/frontend/public/nexoERP.png",
+    // Ruta corregida
+    img: "/nexoERP.png",
     demo: "https://nexo-erp-sepia.vercel.app/login", 
     code: "https://github.com/wacho91"  
   }
