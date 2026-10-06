@@ -5,14 +5,32 @@ export const Contact = () => {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [sent, setSent] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+    const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Mensaje enviado:", form);
-    setSent(true);
-    setTimeout(() => {
-      setSent(false);
-      setForm({ name: "", email: "", message: "" });
-    }, 3000);
+    setLoading(true);
+    try {
+      // Cambia esta URL por la de tu backend local o el de Render cuando lo subas
+      const res = await fetch('http://localhost:8000/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form)
+      });
+      const data = await res.json();
+      
+      if (data.success) {
+        setSent(true);
+        setForm({ name: "", email: "", message: "" });
+        setTimeout(() => setSent(false), 3000);
+      } else {
+        alert("Hubo un error al enviar el mensaje.");
+      }
+    } catch (err) {
+      alert("No se pudo conectar con el servidor.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
