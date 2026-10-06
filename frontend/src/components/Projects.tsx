@@ -19,7 +19,7 @@ const projects: Project[] = [
     tech: "FastAPI, React, PostgreSQL", 
     color: "from-sky-500/20 to-indigo-500/20",
     icon: Cog,
-    img: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=800&auto=format&fit=crop", 
+    img: "/frontend/public/khazad-dum.png", 
     demo: "https://khazad-dum-two.vercel.app", 
     code: "https://github.com/wacho91" 
   },
@@ -29,30 +29,30 @@ const projects: Project[] = [
     tech: "FastAPI, React, Supabase", 
     color: "from-emerald-500/20 to-teal-500/20",
     icon: Leaf,
-    img: "https://images.unsplash.com/photo-1625246333195-78d9c38ad449?q=80&w=800&auto=format&fit=crop",
+    img: "/frontend/public/agroFlow.png",
     demo: "https://agro-flow-one.vercel.app", 
     code: "https://github.com/wacho91" 
   },
   { 
     name: "FishSinu", 
     desc: "ERP para pescadería con inventario fraccionario (kilos) y créditos.", 
-    tech: "FastAPI, React, SQLite", 
+    tech: "FastAPI, React, Supabase", 
     color: "from-cyan-500/20 to-blue-500/20",
     icon: Fish,
     // Imagen cambiada a una que sí funciona
-    img: "https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?q=80&w=800&auto=format&fit=crop",
+    img: "/frontend/public/fishsinu.png",
     // Si no hay demo, lo mandamos a tu GitHub para que no esté muerto
-    demo: "https://github.com/wacho91", 
+    demo: "https://fish-sinu-mzn7.vercel.app", 
     code: "https://github.com/wacho91"  
   },
   { 
     name: "NexoERP", 
     desc: "Sistema de gestión de tienda virtual con facturación electrónica.", 
-    tech: "FastAPI, React, SQLite", 
+    tech: "FastAPI, React, Supabase", 
     color: "from-amber-500/20 to-orange-500/20",
     icon: ShoppingCart,
-    img: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=800&auto=format&fit=crop",
-    demo: "https://github.com/wacho91", 
+    img: "/frontend/public/nexoERP.png",
+    demo: "https://nexo-erp-sepia.vercel.app/login", 
     code: "https://github.com/wacho91"  
   }
 ];
