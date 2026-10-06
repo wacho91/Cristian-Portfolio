@@ -19,10 +19,9 @@ const projects: Project[] = [
     tech: "FastAPI, React, PostgreSQL", 
     color: "from-sky-500/20 to-indigo-500/20",
     icon: Cog,
-    // Placeholder tecnológico. Lo cambiaremos por tu captura real.
     img: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=800&auto=format&fit=crop", 
-    demo: "https://khazad-dum.vercel.app", 
-    code: "https://github.com/wacho91/Khazad-dum" 
+    demo: "https://khazad-dum-two.vercel.app", 
+    code: "https://github.com/wacho91" 
   },
   { 
     name: "AgroFlow", 
@@ -32,7 +31,7 @@ const projects: Project[] = [
     icon: Leaf,
     img: "https://images.unsplash.com/photo-1625246333195-78d9c38ad449?q=80&w=800&auto=format&fit=crop",
     demo: "https://agro-flow-one.vercel.app", 
-    code: "https://github.com/wacho91/AgroFlow" 
+    code: "https://github.com/wacho91" 
   },
   { 
     name: "FishSinu", 
@@ -40,9 +39,11 @@ const projects: Project[] = [
     tech: "FastAPI, React, SQLite", 
     color: "from-cyan-500/20 to-blue-500/20",
     icon: Fish,
-    img: "https://images.unsplash.com/photo-1535473895227-bdecb20fb373?q=80&w=800&auto=format&fit=crop",
-    demo: "#", 
-    code: "#"  
+    // Imagen cambiada a una que sí funciona
+    img: "https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?q=80&w=800&auto=format&fit=crop",
+    // Si no hay demo, lo mandamos a tu GitHub para que no esté muerto
+    demo: "https://github.com/wacho91", 
+    code: "https://github.com/wacho91"  
   },
   { 
     name: "NexoERP", 
@@ -51,8 +52,8 @@ const projects: Project[] = [
     color: "from-amber-500/20 to-orange-500/20",
     icon: ShoppingCart,
     img: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=800&auto=format&fit=crop",
-    demo: "#", 
-    code: "#"  
+    demo: "https://github.com/wacho91", 
+    code: "https://github.com/wacho91"  
   }
 ];
 
@@ -79,7 +80,7 @@ export const Projects = () => {
               viewport={{ once: true }}
               className={`bg-gradient-to-br ${p.color} border border-slate-700 rounded-2xl overflow-hidden hover:scale-[1.02] transition-transform duration-300 group cursor-pointer backdrop-blur-sm flex flex-col`}
             >
-              {/* Imagen Superior con efecto Zoom */}
+              {/* Imagen Superior */}
               <div className="h-48 w-full overflow-hidden border-b border-slate-700">
                 <img src={p.img} alt={p.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
               </div>
@@ -96,16 +97,9 @@ export const Projects = () => {
                 <div className="flex justify-between items-end mt-2">
                   <span className="text-xs font-mono text-slate-400 bg-slate-900/50 px-3 py-1 rounded-full">{p.tech}</span>
                   <div className="flex gap-4">
-                    {p.demo !== '#' ? (
-                      <a href={p.demo} target="_blank" rel="noopener noreferrer" className="text-sm text-sky-400 hover:underline font-medium">Ver Demo</a>
-                    ) : (
-                      <span className="text-sm text-slate-600 cursor-not-allowed">Demo Local</span>
-                    )}
-                    {p.code !== '#' ? (
-                      <a href={p.code} target="_blank" rel="noopener noreferrer" className="text-sm text-slate-400 hover:text-white transition-colors">Código</a>
-                    ) : (
-                      <span className="text-sm text-slate-600 cursor-not-allowed">Privado</span>
-                    )}
+                    {/* Ahora todos los botones son clickeables */}
+                    <a href={p.demo} target="_blank" rel="noopener noreferrer" className="text-sm text-sky-400 hover:underline font-medium">Ver Demo</a>
+                    <a href={p.code} target="_blank" rel="noopener noreferrer" className="text-sm text-slate-400 hover:text-white transition-colors">Código</a>
                   </div>
                 </div>
               </div>
