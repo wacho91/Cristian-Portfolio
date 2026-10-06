@@ -3,15 +3,14 @@ import { Mail, Github, Linkedin, Send } from "lucide-react";
 
 export const Contact = () => {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [loading, setLoading] = useState(false);
   const [sent, setSent] = useState(false);
-
-    const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     try {
-      // Cambia esta URL por la de tu backend local o el de Render cuando lo subas
+      // URL directa a tu backend local
       const res = await fetch('http://localhost:8000/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -54,7 +53,7 @@ export const Contact = () => {
               </div>
             </a>
 
-            <a href="https://github.com/wacho91" className="flex items-center gap-4 text-slate-300 hover:text-sky-400 transition-colors group">
+            <a href="https://github.com/wacho91" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 text-slate-300 hover:text-sky-400 transition-colors group">
               <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 group-hover:border-sky-500/50 transition-colors">
                 <Github className="w-6 h-6 text-sky-400" />
               </div>
@@ -64,13 +63,13 @@ export const Contact = () => {
               </div>
             </a>
 
-            <a href="www.linkedin.com/in/cristian-gonzalez-fuentes-developerfullstack" className="flex items-center gap-4 text-slate-300 hover:text-sky-400 transition-colors group">
+            <a href="https://www.linkedin.com/in/cristian-gonzalez-fuente" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 text-slate-300 hover:text-sky-400 transition-colors group">
               <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 group-hover:border-sky-500/50 transition-colors">
                 <Linkedin className="w-6 h-6 text-sky-400" />
               </div>
               <div>
                 <p className="text-xs text-slate-500 uppercase">LinkedIn</p>
-                <p className="font-medium">www.linkedin.com/in/cristian-gonzalez-fuentes-developerfullstack</p>
+                <p className="font-medium">linkedin.com/in/cristian-gonzalez-fuente</p>
               </div>
             </a>
           </div>
@@ -112,10 +111,11 @@ export const Contact = () => {
             </div>
             <button
               type="submit"
-              className="w-full bg-gradient-to-r from-sky-500 to-indigo-600 text-white font-bold py-3 rounded-lg hover:shadow-lg hover:shadow-sky-500/30 transition-all flex items-center justify-center gap-2"
+              disabled={loading}
+              className="w-full bg-gradient-to-r from-sky-500 to-indigo-600 text-white font-bold py-3 rounded-lg hover:shadow-lg hover:shadow-sky-500/30 transition-all flex items-center justify-center gap-2 disabled:opacity-50"
             >
-              {sent ? "¡Mensaje Enviado! ✅" : "Enviar Mensaje"}
-              {!sent && <Send className="w-4 h-4" />}
+              {loading ? "Enviando..." : sent ? "¡Mensaje Enviado! ✅" : "Enviar Mensaje"}
+              {!loading && !sent && <Send className="w-4 h-4" />}
             </button>
           </form>
         </div>
