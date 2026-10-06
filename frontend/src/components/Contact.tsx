@@ -11,7 +11,7 @@ export const Contact = () => {
     setLoading(true);
     try {
       // URL directa a tu backend local
-      const res = await fetch('http://localhost:8000/api/contact', {
+      const res = await fetch('https://portfolio-api.onrender.com/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form)
