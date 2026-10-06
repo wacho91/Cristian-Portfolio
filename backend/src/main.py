@@ -1,90 +1,64 @@
-"""Punto de entrada FastAPI — Cristian-Portfolio API.
-
-Responsabilidad única: construir la app, configurar CORS, registrar routers
-modulares y gestionar el ciclo de vida (lifespan) de recursos compartidos.
-"""
-from __future__ import annotations
-
-import logging
 import os
-from contextlib import asynccontextmanager
-from collections.abc import AsyncGenerator
-
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
+from dotenv import load_dotenv
 
-from src.database import dispose_db, init_db
-from src.routes import api_router
+load_dotenv()
 
-# ---------------------------------------------------------------------------
-# Logging global (formato consistente para todos los módulos)
-# ---------------------------------------------------------------------------
-logging.basicConfig(
-    level=os.getenv("LOG_LEVEL", "INFO").upper(),
-    format="%(asctime)s | %(levelname)-8s | %(name)s | %(message)s",
-)
-logger = logging.getLogger("cristian_portfolio.main")
+app = FastAPI()
 
-# ---------------------------------------------------------------------------
-# CORS: orígenes permitidos desde entorno (coma-separados)
-# ---------------------------------------------------------------------------
-_raw_origins = os.getenv(
-    "CORS_ORIGINS",
-    "http://localhost:3000,http://localhost:5173,http://127.0.0.1:5173",
-)
-ALLOWED_ORIGINS: list[str] = [o.strip() for o in _raw_origins.split(",") if o.strip()]
-
-
-# ---------------------------------------------------------------------------
-# Ciclo de vida: init_db al arrancar, dispose_db al apagar
-# ---------------------------------------------------------------------------
-@asynccontextmanager
-async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
-    """Gestiona recursos compartidos durante el ciclo de vida de la app."""
-    logger.info("Iniciando Cristian-Portfolio API...")
-    await init_db()
-    logger.info("Base de datos inicializada. CORS origins=%s", ALLOWED_ORIGINS)
-    try:
-        yield
-    finally:
-        logger.info("Apagando API, liberando pool de conexiones...")
-        await dispose_db()
-        logger.info("Recursos liberados correctamente.")
-
-
-# ---------------------------------------------------------------------------
-# Instancia FastAPI
-# ---------------------------------------------------------------------------
-app = FastAPI(
-    title="Cristian-Portfolio API",
-    description="Backend del portafolio personal — FastAPI + SQLAlchemy async.",
-    version="0.1.0",
-    lifespan=lifespan,
-    docs_url="/api/docs",
-    redoc_url="/api/redoc",
-    openapi_url="/api/openapi.json",
-)
-
-# ---------------------------------------------------------------------------
-# Middleware CORS (permite el origen del Frontend)
-# ---------------------------------------------------------------------------
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=ALLOWED_ORIGINS,
+    allow_origins=["*"], # Permitimos a Vercel conectarse
     allow_credentials=True,
-    allow_methods=["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+    allow_methods=["*"],
     allow_headers=["*"],
-    expose_headers=["X-Request-ID"],
-    max_age=600,
 )
 
-# ---------------------------------------------------------------------------
-# Routers modulares bajo /api
-# ---------------------------------------------------------------------------
-app.include_router(api_router, prefix="/api")
+class ContactForm(BaseModel):
+    name: str
+    email: str
+    message: str
 
+@app.post("/api/contact")
+async def send_contact_email(form: ContactForm):
+    # Tus credenciales (las pondremos en el .env)
+    sender_email = os.getenv("EMAIL_USER", "criskol.71@gmail.com")
+    sender_password = os.getenv("EMAIL_PASS", "tu_contraseña_de_aplicacion_aqui")
+    receiver_email = "criskol.71@gmail.com" # A dónde llegan los mensajes
 
-@app.get("/", include_in_schema=False)
-async def root() -> dict[str, str]:
-    """Redirección informativa a la documentación."""
-    return {"service": "cristian-portfolio-api", "docs": "/api/docs"}
+    # Construir el correo
+    msg = MIMEMultipart()
+    msg['From'] = sender_email
+    msg['To'] = receiver_email
+    msg['Subject'] = f"🚀 Nuevo mensaje de tu portafolio: {form.name}"
+    
+    body = f"""
+    Has recibido un nuevo mensaje desde tu portafolio web:
+    
+    Nombre: {form.name}
+    Email: {form.email}
+    
+    Mensaje:
+    {form.message}
+    """
+    msg.attach(MIMEText(body, 'plain'))
+
+    # Enviar el correo usando el servidor de Gmail
+    try:
+        server = smtplib.SMTP('smtp.gmail.com', 587)
+        server.starttls()
+        server.login(sender_email, sender_password)
+        server.sendmail(sender_email, receiver_email, msg.as_string())
+        server.quit()
+        return {"success": True, "message": "Correo enviado correctamente"}
+    except Exception as e:
+        return {"success": False, "message": f"Error al enviar: {str(e)}"}
+
+@app.get("/")
+def read_root():
+    return {"status": "Backend del portafolio activo"}
