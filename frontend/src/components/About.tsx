@@ -19,10 +19,10 @@ export const About = () => {
   }, []);
 
   const pipeline = [
-    { icon: Brain, title: "Análisis", desc: "Entender el problema real del cliente" },
+    { icon: Brain, title: "Análisis", desc: "Entender el problema real del negocio" },
     { icon: Cog, title: "Arquitectura", desc: "Diseñar sistemas limpios y escalables" },
     { icon: Code2, title: "Clean Code", desc: "Programar con estándares Enterprise" },
-    { icon: Cloud, title: "Despliegue", desc: "Subir a la nube con Vercel y Render" },
+    { icon: Cloud, title: "Despliegue", desc: "Cloud Computing, CI/CD, Docker y Serverless" },
   ];
 
   const metrics = [
