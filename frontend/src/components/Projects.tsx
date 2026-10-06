@@ -7,6 +7,7 @@ interface Project {
   tech: string;
   color: string;
   icon: LucideIcon;
+  img: string;
   demo: string;
   code: string;
 }
@@ -18,6 +19,8 @@ const projects: Project[] = [
     tech: "FastAPI, React, PostgreSQL", 
     color: "from-sky-500/20 to-indigo-500/20",
     icon: Cog,
+    // Placeholder tecnológico. Lo cambiaremos por tu captura real.
+    img: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=800&auto=format&fit=crop", 
     demo: "https://khazad-dum.vercel.app", 
     code: "https://github.com/wacho91/Khazad-dum" 
   },
@@ -27,6 +30,7 @@ const projects: Project[] = [
     tech: "FastAPI, React, Supabase", 
     color: "from-emerald-500/20 to-teal-500/20",
     icon: Leaf,
+    img: "https://images.unsplash.com/photo-1625246333195-78d9c38ad449?q=80&w=800&auto=format&fit=crop",
     demo: "https://agro-flow-one.vercel.app", 
     code: "https://github.com/wacho91/AgroFlow" 
   },
@@ -36,6 +40,7 @@ const projects: Project[] = [
     tech: "FastAPI, React, SQLite", 
     color: "from-cyan-500/20 to-blue-500/20",
     icon: Fish,
+    img: "https://images.unsplash.com/photo-1535473895227-bdecb20fb373?q=80&w=800&auto=format&fit=crop",
     demo: "#", 
     code: "#"  
   },
@@ -45,6 +50,7 @@ const projects: Project[] = [
     tech: "FastAPI, React, SQLite", 
     color: "from-amber-500/20 to-orange-500/20",
     icon: ShoppingCart,
+    img: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=800&auto=format&fit=crop",
     demo: "#", 
     code: "#"  
   }
@@ -63,7 +69,7 @@ export const Projects = () => {
           Mi <span className="text-sky-400">Ecosistema</span> SaaS
         </motion.h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {projects.map((p, i) => (
             <motion.div 
               key={i} 
@@ -71,27 +77,36 @@ export const Projects = () => {
               whileInView={{ opacity: 1, y: 0 }} 
               transition={{ duration: 0.5, delay: i * 0.1 }}
               viewport={{ once: true }}
-              className={`bg-gradient-to-br ${p.color} border border-slate-700 rounded-2xl p-8 hover:scale-[1.02] transition-transform duration-300 group cursor-pointer backdrop-blur-sm flex flex-col`}
+              className={`bg-gradient-to-br ${p.color} border border-slate-700 rounded-2xl overflow-hidden hover:scale-[1.02] transition-transform duration-300 group cursor-pointer backdrop-blur-sm flex flex-col`}
             >
-              <div className="flex justify-between items-start mb-4">
-                <h3 className="text-2xl font-bold text-white">{p.name}</h3>
-                {/* Ícono Gigante representativo */}
-                <p.icon className="w-10 h-10 text-slate-500 group-hover:text-sky-400 transition-colors duration-300" />
+              {/* Imagen Superior con efecto Zoom */}
+              <div className="h-48 w-full overflow-hidden border-b border-slate-700">
+                <img src={p.img} alt={p.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
               </div>
-              <p className="text-slate-300 mb-6 flex-grow">{p.desc}</p>
-              <div className="flex justify-between items-end mt-4">
-                <span className="text-xs font-mono text-slate-400 bg-slate-900/50 px-3 py-1 rounded-full">{p.tech}</span>
-                <div className="flex gap-4">
-                  {p.demo !== '#' ? (
-                    <a href={p.demo} target="_blank" rel="noopener noreferrer" className="text-sm text-sky-400 hover:underline font-medium">Ver Demo</a>
-                  ) : (
-                    <span className="text-sm text-slate-600 cursor-not-allowed">Demo Local</span>
-                  )}
-                  {p.code !== '#' ? (
-                    <a href={p.code} target="_blank" rel="noopener noreferrer" className="text-sm text-slate-400 hover:text-white transition-colors">Código</a>
-                  ) : (
-                    <span className="text-sm text-slate-600 cursor-not-allowed">Privado</span>
-                  )}
+              
+              {/* Contenido Inferior */}
+              <div className="p-6 flex flex-col flex-grow">
+                <div className="flex justify-between items-start mb-3">
+                  <h3 className="text-2xl font-bold text-white">{p.name}</h3>
+                  <div className="bg-slate-900/60 p-2 rounded-lg border border-slate-700">
+                    <p.icon className="w-5 h-5 text-sky-400" />
+                  </div>
+                </div>
+                <p className="text-slate-300 mb-6 flex-grow text-sm">{p.desc}</p>
+                <div className="flex justify-between items-end mt-2">
+                  <span className="text-xs font-mono text-slate-400 bg-slate-900/50 px-3 py-1 rounded-full">{p.tech}</span>
+                  <div className="flex gap-4">
+                    {p.demo !== '#' ? (
+                      <a href={p.demo} target="_blank" rel="noopener noreferrer" className="text-sm text-sky-400 hover:underline font-medium">Ver Demo</a>
+                    ) : (
+                      <span className="text-sm text-slate-600 cursor-not-allowed">Demo Local</span>
+                    )}
+                    {p.code !== '#' ? (
+                      <a href={p.code} target="_blank" rel="noopener noreferrer" className="text-sm text-slate-400 hover:text-white transition-colors">Código</a>
+                    ) : (
+                      <span className="text-sm text-slate-600 cursor-not-allowed">Privado</span>
+                    )}
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -100,4 +115,4 @@ export const Projects = () => {
       </div>
     </section>
   );
-};
+}
