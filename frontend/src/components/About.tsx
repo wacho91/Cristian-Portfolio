@@ -20,7 +20,7 @@ export const About = () => {
   }, []);
 
     const pipeline = [
-    { icon: <Brain classNamme="w-10 h-10 text-sky-400 mx-auto mb-3" />, title: "Análisis", desc: "Entender el problema real del negocio" },
+    { icon: <Brain className="w-10 h-10 text-sky-400 mx-auto mb-3" />, title: "Análisis", desc: "Entender el problema real del negocio" },
     { icon: <MetallicGear className="w-12 h-12 mx-auto mb-2 animate-[spin_8s_linear_infinite]" />, title: "Arquitectura", desc: "Diseñar sistemas limpios y escalables" },
     { icon: <Code2 className="w-10 h-10 text-sky-400 mx-auto mb-3" />, title: "Clean Code", desc: "Programar con estándares Enterprise" },
     { icon: <Cloud className="w-10 h-10 text-sky-400 mx-auto mb-3" />, title: "Despliegue", desc: "Cloud Computing, CI/CD, Docker y Serverless" },
