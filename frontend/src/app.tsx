@@ -3,6 +3,7 @@ import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { Projects } from './components/Projects';
 import { About } from './components/About';
+import { Services } from './components/Services'; // <-- Nuevo import
 import { Contact } from './components/Contact';
 
 export function App() {
@@ -14,6 +15,7 @@ export function App() {
         <Hero />
         <Projects />
         <About />
+        <Services /> {/* <-- Nueva sección */}
         <Contact />
       </main>
     </div>
