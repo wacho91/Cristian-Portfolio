@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { Cog, Brain, Cloud, Code2 } from "lucide-react";
+import { Brain, Cloud, Code2 } from "lucide-react";
+import { MetallicGear } from "./MetallicGear"; // <-- Nuevo import
 
 export const About = () => {
   const [text, setText] = useState("");
@@ -18,11 +19,11 @@ export const About = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const pipeline = [
-    { icon: Brain, title: "Análisis", desc: "Entender el problema real del negocio" },
-    { icon: Cog, title: "Arquitectura", desc: "Diseñar sistemas limpios y escalables" },
-    { icon: Code2, title: "Clean Code", desc: "Programar con estándares Enterprise" },
-    { icon: Cloud, title: "Despliegue", desc: "Cloud Computing, CI/CD, Docker y Serverless" },
+    const pipeline = [
+    { icon: <Brain classNamme="w-10 h-10 text-sky-400 mx-auto mb-3" />, title: "Análisis", desc: "Entender el problema real del negocio" },
+    { icon: <MetallicGear className="w-12 h-12 mx-auto mb-2 animate-[spin_8s_linear_infinite]" />, title: "Arquitectura", desc: "Diseñar sistemas limpios y escalables" },
+    { icon: <Code2 className="w-10 h-10 text-sky-400 mx-auto mb-3" />, title: "Clean Code", desc: "Programar con estándares Enterprise" },
+    { icon: <Cloud className="w-10 h-10 text-sky-400 mx-auto mb-3" />, title: "Despliegue", desc: "Cloud Computing, CI/CD, Docker y Serverless" },
   ];
 
   const metrics = [
@@ -56,7 +57,7 @@ export const About = () => {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
           {pipeline.map((step, i) => (
             <div key={i} className="bg-slate-900/50 border border-slate-800 rounded-xl p-6 text-center hover:border-sky-500/50 transition-all group">
-              <step.icon className="w-10 h-10 text-sky-400 mx-auto mb-3 animate-[spin_4s_linear_infinite]" />
+              {step.icon}
               <h4 className="text-white font-bold text-sm mb-1">{step.title}</h4>
               <p className="text-slate-500 text-xs">{step.desc}</p>
             </div>
