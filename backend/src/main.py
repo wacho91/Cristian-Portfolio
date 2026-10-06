@@ -46,7 +46,7 @@ async def send_contact_email(form: ContactForm):
     Mensaje:
     {form.message}
     """
-    msg.attach(MIMEText(body, 'plain'))
+    msg.attach(MIMEText(body, 'plain', 'utf-8'))
 
     # Enviar el correo usando el servidor de Gmail
     try:
